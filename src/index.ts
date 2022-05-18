@@ -178,6 +178,8 @@ const anchorme = function (
 				}>;
 		  }
 ) {
+
+	
 	let { input, options, extensions } =
 		typeof arg === "string"
 			? { input: arg, options: undefined, extensions: undefined }
@@ -190,6 +192,7 @@ const anchorme = function (
 	}
 
 	const found = list(input);
+	
 	let newStr = "";
 
 	// the following code isn't very intuitive nor human readable

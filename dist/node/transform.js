@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.transform = void 0;
 function applyOption(string, props, option) {
     // conditional
     if (typeof option === "function") {

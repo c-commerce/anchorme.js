@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isInsideAnchorTag = exports.isInsideAttribute = exports.maximumAttrLength = exports.checkParenthesis = void 0;
 var dictionary_1 = require("./dictionary");
 function checkParenthesis(opening, closing, target, nextChar) {
     if (nextChar !== closing) {

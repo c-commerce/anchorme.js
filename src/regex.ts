@@ -1,7 +1,10 @@
 import { nonLatinAlphabetRanges, TLDs } from "./dictionary";
 const email_address =
 	"([a-z0-9!#$%&'*+=?^_`{|}~-]+(\\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*)";
-const domainWithTLD = `([a-z0-9]+(-+[a-z0-9]+)*\\.)+(${TLDs})`;
+// Due to puncode support non-latin characters are allowed in domain names but resolve
+// differetly, [see](https://www.ietf.org/rfc/rfc3492.txt). Browser support is varying and needs to
+// to be determined by the caller
+const domainWithTLD = `([a-z0-9${nonLatinAlphabetRanges}]+(-+[a-z0-9${nonLatinAlphabetRanges}]+)*\\.)+(${TLDs})`;
 const domainWithAnyTLD = `([a-z0-9]+(-+[a-z0-9]+)*\\.)+([a-z0-9][a-z0-9-]{0,${
 	Math.max.apply(
 		this,

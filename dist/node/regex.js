@@ -1,8 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.iidxes = exports.urlRegex = exports.fileRegex = exports.emailRegex = exports.ipRegex = exports.finalRegex = exports.final = exports.file = exports.url = exports.email = void 0;
 var dictionary_1 = require("./dictionary");
 var email_address = "([a-z0-9!#$%&'*+=?^_`{|}~-]+(\\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*)";
-var domainWithTLD = "([a-z0-9]+(-+[a-z0-9]+)*\\.)+(" + dictionary_1.TLDs + ")";
+// Due to puncode support non-latin characters are allowed in domain names but resolve
+// differetly, [see](https://www.ietf.org/rfc/rfc3492.txt). Browser support is varying and needs to
+// to be determined by the caller
+var domainWithTLD = "([a-z0-9" + dictionary_1.nonLatinAlphabetRanges + "]+(-+[a-z0-9" + dictionary_1.nonLatinAlphabetRanges + "]+)*\\.)+(" + dictionary_1.TLDs + ")";
 var domainWithAnyTLD = "([a-z0-9]+(-+[a-z0-9]+)*\\.)+([a-z0-9][a-z0-9-]{0," + (Math.max.apply(this, dictionary_1.TLDs.split("|").map(function (x) { return x.length; })) - 2) + "}[a-z0-9])";
 var allowedInPath = "a-zA-Z\\d\\-._~\\!$&*+,;=:@%'\"\\[\\]()";
 var path = "(((\\/(([" + allowedInPath + "]+(\\/[" + allowedInPath + "]*)*))?)?)((\\?([" + allowedInPath + "\\/?]*))?)((\\#([" + allowedInPath + "\\/?]*))?))?";

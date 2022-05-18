@@ -48,6 +48,22 @@ describe("Basic testing", () => {
 						`<a href="http://www.google.com">www.google.com</a>`
 					);
 				});
+
+				it("Transformation of a utf-8 URL", () => {
+					expect(anchorme("www.gòògle.com")).not.toBe(
+						"www.gòògle.com"
+					);
+					expect(anchorme("www.gòògle.com")).toBe(
+						`<a href="http://www.gòògle.com">www.gòògle.com</a>`
+					);
+					expect(anchorme("www.gòògle.com/ò")).toBe(
+						`<a href="http://www.gòògle.com/ò">www.gòògle.com/ò</a>`
+					);
+
+					expect(anchorme("www.gòògle-ò.com")).toBe(
+						`<a href="http://www.gòògle-ò.com">www.gòògle-ò.com</a>`
+					);
+				});
 				it("Transformation of an email", () => {
 					expect(anchorme("alex@arrayy.com")).not.toBe(
 						"alex@arrayy.com"
